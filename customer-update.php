@@ -2,21 +2,20 @@
 include 'header.php';
 include 'mysql_connect.php';
 
+$requestNic=$_GET['customerNic'];
+
 
 if (isset($_POST['submit'])){
-    $nic=$_POST['nic'];
     $name=$_POST['name'];
     $address=$_POST['address'];
     $salary=$_POST['salary'];
 
-    echo $nic . "OK";
-    //prepared statement
-    $sql="INSERT INTO `customer` (nic,name,address,salary) 
-    VALUES('$nic','$name','$address','$salary')";
+
+    $sql="UPDATE customer SET name='$name', address='$address',salary=$salary WHERE nic = 'requestNic'";
 
     $result=mysqli_query($con,$sql);
     if ($result){
-        echo " Customer was Saved!";
+        header("location:customer-list.php");
     }
 }
 
@@ -28,23 +27,18 @@ if (isset($_POST['submit'])){
     <title>Customer</title>
 </head>
 <body>
-<form method="post" action="customer.php">
+<form method="post" action="customer-update.php">
     <div class="container">
         <br>
         <h4>Customer Form</h4>
         <hr>
         <div class="row">
+
             <div class="col-3">
-            <div class="form-group">
-                <label for="nic">NIC</label>
-                <input type="text" name="nic" id="nic" class="form-control" required>
+                <div class="form-group">
+                    <label for="nic">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" required>
                 </div>
-            </div>
-            <div class="col-3">
-            <div class="form-group">
-                <label for="nic">Name</label>
-                <input type="text" name="name" id="name" class="form-control" required>
-            </div>
             </div>
             <div class="col-3">
                 <div class="form-group">
@@ -61,11 +55,11 @@ if (isset($_POST['submit'])){
 
             <div class="col-12">
                 <br>
-                <input type="submit" name="submit" class="btn btn-primary col-12" value="Save Customer"/>
+                <input type="submit" name="submit" class="btn btn-primary col-12" value="Update Customer"/>
 
-                </div>
             </div>
         </div>
+    </div>
     </div>
 </form>
 

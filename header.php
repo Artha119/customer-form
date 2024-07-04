@@ -13,8 +13,6 @@
 </head>
 <body>
 
-</body>
-</html>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Customer Form</a>
@@ -40,5 +38,9 @@
         </div>
     </div>
 </nav>
+
+</body>
+</html>
+
 
 
